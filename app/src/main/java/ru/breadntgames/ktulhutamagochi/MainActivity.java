@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         eatProgress = findViewById(R.id.eat_progress);
         healthProgress = findViewById(R.id.health_progress);
         happyProgress = findViewById(R.id.happy_progress);
-        progressBarThread = new Thread(){
+        progressBarThread = new Thread() {
             @Override
             public void run() {
                 super.run();
@@ -64,13 +64,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void setEatProgress(View v){
-        eatProgress.setProgress(eatProgress.getProgress() + 10);
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+        draw.setPause(true);
     }
-    public void setHealthProgress(View v){
-        healthProgress.setProgress(healthProgress.getProgress() + 10);
+
+    public void setEatProgress(View v) {
+        if (!draw.isPause())
+            eatProgress.setProgress(eatProgress.getProgress() + 10);
     }
-    public void setHappyProgress(View v){
-        happyProgress.setProgress(happyProgress.getProgress() + 10);
+
+    public void setHealthProgress(View v) {
+        if (!draw.isPause())
+            healthProgress.setProgress(healthProgress.getProgress() + 10);
     }
+
+    public void setHappyProgress(View v) {
+        if (!draw.isPause())
+            happyProgress.setProgress(happyProgress.getProgress() + 10);
+    }
+
+    public void setPaused(View v) {
+        draw.setPause(!draw.isPause());
+    }
+
 }

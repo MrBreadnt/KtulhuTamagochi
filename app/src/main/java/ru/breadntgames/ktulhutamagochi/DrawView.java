@@ -51,12 +51,12 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
             drawThread.start();
             isRunning = true;
         } else
-            pause = false;
+            setPause(false);
     }
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
-        pause = true;
+        setPause(true);
         /*boolean retry = true;
         drawThread.setRunning(false);
         monsterAnim.setRunning(false);
@@ -156,5 +156,8 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     public boolean isPause() {
         return pause;
+    }
+    public void setPause(boolean pause){
+        this.pause = pause;
     }
 }

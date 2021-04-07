@@ -55,6 +55,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="отладочная пауза"
+                android:onClick="setPaused"/>
+
             <ProgressBar
                 android:id="@+id/happy_progress"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
@@ -100,13 +108,22 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/happy_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setHappyProgress"
+                android:text="happy" />
+
+            <Button
                 android:id="@+id/eat_button"
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="eat"
-                android:onClick="setEatProgress"/>
+                android:onClick="setEatProgress"
+                android:text="eat" />
 
             <Button
                 android:id="@+id/health_button"
@@ -114,18 +131,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="health"
-                android:onClick="setHealthProgress"/>
+                android:onClick="setHealthProgress"
+                android:text="health" />
 
-            <Button
-                android:id="@+id/happy_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="happy"
-                android:onClick="setHappyProgress"/>
         </LinearLayout>
+
     </LinearLayout>
 
 
