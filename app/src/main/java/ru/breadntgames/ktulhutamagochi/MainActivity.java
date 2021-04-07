@@ -38,6 +38,12 @@ public class MainActivity extends AppCompatActivity {
                         healthProgress.setProgress(healthProgress.getProgress() - 1);
                         eatProgress.setProgress(eatProgress.getProgress() - 3);
                         happyProgress.setProgress(happyProgress.getProgress() - 2);
+                        if (eatProgress.getProgress() <= 25 || healthProgress.getProgress() <= 25 || happyProgress.getProgress() <= 25)
+                            draw.setState(0);
+                        else if (eatProgress.getProgress() <= 60 || healthProgress.getProgress() <= 60 || happyProgress.getProgress() <= 60)
+                            draw.setState(1);
+                        else
+                            draw.setState(2);
                     }
                     try {
                         sleep(time);

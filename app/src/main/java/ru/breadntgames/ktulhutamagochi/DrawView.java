@@ -22,8 +22,11 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     Random random = new Random();
     boolean pause = false, isRunning = false;
     Bitmap[] monster;
+    Bitmap[] normal;
+    Bitmap[] alert;
     Resources res = this.getResources();
     Paint paint = new Paint();
+    int state = 2;
     AnimationManager monsterAnim;
 
     public DrawView(Context context, AttributeSet attributeSet) {
@@ -34,6 +37,14 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
         monster = new Bitmap[]{
                 BitmapFactory.decodeResource(res, R.drawable.monster_0),
                 BitmapFactory.decodeResource(res, R.drawable.monster_1)
+        };
+        normal = new Bitmap[]{
+                BitmapFactory.decodeResource(res, R.drawable.normal_0),
+                BitmapFactory.decodeResource(res, R.drawable.normal_1)
+        };
+        alert = new Bitmap[]{
+                BitmapFactory.decodeResource(res, R.drawable.alert_0),
+                BitmapFactory.decodeResource(res, R.drawable.alert_1)
         };
         monsterAnim = new AnimationManager(monster.length, 500);
         paint.setStyle(Paint.Style.STROKE);
@@ -123,10 +134,21 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
                         }
 
                         //отрисовка ктулху
-                        //добавить остальные состояния
                         // костыльно потом поменять
-                        monsterAnim.setFrames(monster.length - 1);
-                        canvas.drawBitmap(monster[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - monster[0].getWidth() / 2), (float) (getHeight() / 2 - monster[0].getHeight() / 2), paint);
+                        switch (state){
+                            case 2:
+                                monsterAnim.setFrames(normal.length - 1);
+                                canvas.drawBitmap(normal[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - normal[0].getWidth() / 2), (float) (getHeight() / 2 - normal[0].getHeight() / 2), paint);
+                                break;
+                            case 1:
+                                monsterAnim.setFrames(alert.length - 1);
+                                canvas.drawBitmap(alert[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - alert[0].getWidth() / 2), (float) (getHeight() / 2 - alert[0].getHeight() / 2), paint);
+                                break;
+                            case 0:
+                            default:
+                                monsterAnim.setFrames(monster.length - 1);
+                                canvas.drawBitmap(monster[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - monster[0].getWidth() / 2), (float) (getHeight() / 2 - monster[0].getHeight() / 2), paint);
+                        }
                     } finally {
                         if (canvas != null) {
                             surfaceHolder.unlockCanvasAndPost(canvas);
@@ -159,5 +181,8 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     }
     public void setPause(boolean pause){
         this.pause = pause;
+    }
+    public void setState(int state){
+        this.state = state;
     }
 }
