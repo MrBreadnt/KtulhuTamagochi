@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ProgressBar;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,17 +15,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar eatProgress;
     ProgressBar healthProgress;
     ProgressBar happyProgress;
-    //это осталось с тестов анимации это не надо но я оставил вдруг пригодится
-    /*View.OnTouchListener cl = new View.OnTouchListener() {
-        @Override
-        public boolean onTouch(View view, MotionEvent event) {
-            int action = event.getAction();
-            if (action == MotionEvent.ACTION_DOWN) {
-            } else if (action == MotionEvent.ACTION_UP) {
-            }
-            return true;
-        }
-    };*/
+    Thread progressBarThread;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -37,6 +28,26 @@ public class MainActivity extends AppCompatActivity {
         eatProgress = findViewById(R.id.eat_progress);
         healthProgress = findViewById(R.id.health_progress);
         happyProgress = findViewById(R.id.happy_progress);
+        progressBarThread = new Thread(){
+            @Override
+            public void run() {
+                super.run();
+                int time = 1000;
+                while (true) {
+                    if (!draw.isPause()) {
+                        healthProgress.setProgress(healthProgress.getProgress() - 1);
+                        eatProgress.setProgress(eatProgress.getProgress() - 3);
+                        happyProgress.setProgress(happyProgress.getProgress() - 2);
+                    }
+                    try {
+                        sleep(time);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        progressBarThread.start();
     }
 
     @Override
@@ -51,5 +62,15 @@ public class MainActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    public void setEatProgress(View v){
+        eatProgress.setProgress(eatProgress.getProgress() + 10);
+    }
+    public void setHealthProgress(View v){
+        healthProgress.setProgress(healthProgress.getProgress() + 10);
+    }
+    public void setHappyProgress(View v){
+        happyProgress.setProgress(happyProgress.getProgress() + 10);
     }
 }

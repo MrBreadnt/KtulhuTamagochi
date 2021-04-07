@@ -45,13 +45,12 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
     @Override
     public void surfaceCreated(SurfaceHolder holder) {
-        if(!isRunning) {
+        if (!isRunning) {
             DrawThread drawThread = new DrawThread(getHolder());
             drawThread.setRunning(true);
             drawThread.start();
             isRunning = true;
-        }
-        else
+        } else
             pause = false;
     }
 
@@ -95,56 +94,54 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
             int time = 100;
             while (running) {
                 //пауза
-                while (pause){
+                if (!isPause()) {
+                    canvas = null;
                     try {
-                        sleep(300);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                        canvas = surfaceHolder.lockCanvas(null);
+                        if (canvas == null)
+                            continue;
+                        //задний фон
+                        paint.setShader(backgroundColor);
+                        canvas.drawPaint(paint);
+
+                        //добавление пузырьков
+                        //костыльно потом поменять
+                        if (random.nextInt(25) == 5) {
+                            bubbles.add(new Bubble(random.nextInt(getWidth()), getHeight() + 10, random.nextInt(10) + 10));
+                        }
+                        //рисование пузырьков
+                        paint.setShader(bubbleColor);
+                        int i = 0;
+                        while (i < bubbles.size()) {
+                            if (bubbles.get(i).y < (float) (getHeight() / 2 - 20)) {
+                                bubbles.remove(i);
+                                continue;
+                            }
+                            bubbles.get(i).y -= 10;
+                            canvas.drawCircle(bubbles.get(i).x, bubbles.get(i).y, bubbles.get(i).r, paint);
+                            i++;
+                        }
+
+                        //отрисовка ктулху
+                        //добавить остальные состояния
+                        // костыльно потом поменять
+                        monsterAnim.setFrames(monster.length - 1);
+                        canvas.drawBitmap(monster[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - monster[0].getWidth() / 2), (float) (getHeight() / 2 - monster[0].getHeight() / 2), paint);
+                    } finally {
+                        if (canvas != null) {
+                            surfaceHolder.unlockCanvasAndPost(canvas);
+                        }
                     }
                 }
-                canvas = null;
                 try {
-                    canvas = surfaceHolder.lockCanvas(null);
-                    if (canvas == null)
-                        continue;
-                    //задний фон
-                    paint.setShader(backgroundColor);
-                    canvas.drawPaint(paint);
-
-                    //добавление пузырьков
-                    //костыльно потом поменять
-                    if (random.nextInt(25) == 5) {
-                        bubbles.add(new Bubble(random.nextInt(getWidth()), getHeight() + 10, random.nextInt(10) + 10));
-                    }
-                    //рисование пузырьков
-                    paint.setShader(bubbleColor);
-                    int i = 0;
-                    while (i < bubbles.size()) {
-                        if (bubbles.get(i).y < (float) (getHeight() / 2 - 20)) {
-                            bubbles.remove(i);
-                            continue;
-                        }
-                        bubbles.get(i).y -= 10;
-                        canvas.drawCircle(bubbles.get(i).x, bubbles.get(i).y, bubbles.get(i).r, paint);
-                        i++;
-                    }
-
-                    //отрисовка ктулху
-                    //добавить остальные состояния
-                    // костыльно потом поменять
-                    monsterAnim.setFrames(monster.length - 1);
-                    canvas.drawBitmap(monster[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - monster[0].getWidth() / 2), (float) (getHeight() / 2 - monster[0].getHeight() / 2), paint);
                     sleep(time);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
-                } finally {
-                    if (canvas != null) {
-                        surfaceHolder.unlockCanvasAndPost(canvas);
-                    }
                 }
             }
         }
     }
+
     //класс пузырьков
     //полкостыля если будет время поменять
     static class Bubble {
@@ -155,5 +152,9 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
             this.y = y;
             this.r = r;
         }
+    }
+
+    public boolean isPause() {
+        return pause;
     }
 }
