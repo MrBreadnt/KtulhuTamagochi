@@ -3,6 +3,7 @@ package ru.breadntgames.ktulhutamagochi;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar healthProgress;
     ProgressBar happyProgress;
     Thread progressBarThread;
+    MediaPlayer mediaPlayer;
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
@@ -28,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         eatProgress = findViewById(R.id.eat_progress);
         healthProgress = findViewById(R.id.health_progress);
         happyProgress = findViewById(R.id.happy_progress);
+        //пока нормаьную мелодию не напишу в комменте будет
+        /*mediaPlayer = MediaPlayer.create(getApplicationContext(), R.raw.main);
+        mediaPlayer.start();
+        mediaPlayer.setLooping(true);*/
         progressBarThread = new Thread() {
             @Override
             public void run() {
