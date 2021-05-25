@@ -14,6 +14,10 @@ import android.util.AttributeSet;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -26,11 +30,20 @@ public class MainActivity extends AppCompatActivity {
 
     SharedPreferences preferences;
     ArrayList<Player> bestPlayers = new ArrayList<>();
+    LinearLayout menuLayout;
+    FrameLayout frame, recordsLayout;
+    ListView l;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        menuLayout = findViewById(R.id.btns_layout);
+        recordsLayout = findViewById(R.id.records_layout);
+        l = findViewById(R.id.score_list);
+        frame = (FrameLayout) recordsLayout.getParent();
+        frame.removeAllViews();
+        frame.addView(menuLayout);
         preferences = getSharedPreferences("DagonsSonPrefs", MODE_PRIVATE);
         if (!preferences.contains("newPlayer")) {
             SharedPreferences.Editor ed = preferences.edit();
@@ -53,13 +66,9 @@ public class MainActivity extends AppCompatActivity {
                 bestPlayers.add(p);
             }
             Collections.sort(bestPlayers, Player.COMPARE_BY_SCORE);
-            for (Player i : bestPlayers) {
-                System.out.println(i.name);
-                System.out.println(i.score);
-                System.out.println();
-            }
+            ArrayAdapter<Player> adapter = new ArrayAdapter<>(MainActivity.this, R.layout.score_list_view, bestPlayers);
+            l.setAdapter(adapter);
         }
-
         //убирает вот эту штуку с кнопками раздражающую
         getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
     }
@@ -84,6 +93,16 @@ public class MainActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);
+    }
+
+    public void viewRecords(View view) {
+        frame.removeAllViews();
+        frame.addView(recordsLayout);
+    }
+
+    public void backToMenu(View v){
+        frame.removeAllViews();
+        frame.addView(menuLayout);
     }
 
     public static class MenuView extends SurfaceView implements SurfaceHolder.Callback {
@@ -213,10 +232,15 @@ public class MainActivity extends AppCompatActivity {
         Player() {
         }
 
+        @Override
+        public String toString() {
+            return name + "\n" + score;
+        }
+
         public static final Comparator<Player> COMPARE_BY_SCORE = new Comparator<Player>() {
             @Override
             public int compare(Player pOne, Player pTwo) {
-                return pOne.score - pTwo.score;
+                return pTwo.score - pOne.score;
             }
         };
     }

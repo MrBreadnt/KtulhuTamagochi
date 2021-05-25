@@ -8,9 +8,10 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <view class="ru.breadntgames.ktulhutamagochi.MainActivity$MenuView"
+    <view
+        class="ru.breadntgames.ktulhutamagochi.MainActivity$MenuView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -21,18 +22,14 @@
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="279dp"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/alert_0" />
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ListView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:dividerHeight="30dp"/>
-
             <LinearLayout
+                android:id="@+id/btns_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center"
@@ -53,10 +50,33 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@drawable/records"
-                    android:onClick="startGame"
+                    android:onClick="viewRecords"
                     android:textSize="18sp" />
 
             </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/records_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ListView
+                    android:id="@+id/score_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:dividerHeight="20dp">
+
+                </ListView>
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="69dp"
+                    android:layout_height="64dp"
+                    android:background="@drawable/abc_vector_test"
+                    android:backgroundTint="#FFC800"
+                    android:onClick="backToMenu" />
+            </FrameLayout>
+
         </FrameLayout>
 
     </LinearLayout>

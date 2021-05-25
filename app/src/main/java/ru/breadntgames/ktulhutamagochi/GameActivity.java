@@ -102,6 +102,12 @@ public class GameActivity extends AppCompatActivity {
     }
 
     void gameOver() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                setContentView(R.layout.gameover_activity);
+            }
+        });
     }
 
     @Override
