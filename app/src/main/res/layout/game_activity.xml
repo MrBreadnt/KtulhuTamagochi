@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <FrameLayout
+        android:id="@+id/game_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ru.breadntgames.ktulhutamagochi.DrawView
+            android:id="@+id/draw"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/ui_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right"
+        android:orientation="vertical"
+        tools:ignore="RtlHardcoded">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/level_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:max="1000"
+                android:padding="5dp"
+                android:progress="0"
+                android:progressDrawable="@drawable/horizontal_progress_bar"
+                android:progressTint="@color/colorLevel" />
+
+            <TextView
+                android:id="@+id/level_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:padding="5dp"
+                android:text="Level 0"
+                android:textAlignment="center"
+                android:textAllCaps="true"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:textStyle="bold">
+
+            </TextView>
+        </FrameLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setPaused"
+                android:text="отладочная пауза" />
+
+            <ProgressBar
+                android:id="@+id/happy_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="36dp"
+                android:layout_height="173dp"
+                android:max="100"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:progress="50"
+                android:progressDrawable="@drawable/vertical_progress_bar"
+                android:progressTint="@color/colorHappy" />
+
+            <ProgressBar
+                android:id="@+id/eat_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="36dp"
+                android:layout_height="173dp"
+                android:max="100"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:progress="25"
+                android:progressDrawable="@drawable/vertical_progress_bar"
+                android:progressTint="@color/colorEat" />
+
+            <ProgressBar
+                android:id="@+id/health_progress"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_width="36dp"
+                android:layout_height="173dp"
+                android:max="100"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:progress="75"
+                android:progressDrawable="@drawable/vertical_progress_bar"
+                android:progressTint="@color/colorHealth" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/happy_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setHappyProgress"
+                android:text="happy" />
+
+            <Button
+                android:id="@+id/eat_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setEatProgress"
+                android:text="eat" />
+
+            <Button
+                android:id="@+id/health_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="setHealthProgress"
+                android:text="health" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>
