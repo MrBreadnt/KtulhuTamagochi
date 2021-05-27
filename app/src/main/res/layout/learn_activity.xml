@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".LearnActivity">
 
     <FrameLayout
         android:id="@+id/game_layout"
@@ -16,6 +16,7 @@
             android:id="@+id/draw"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
     </FrameLayout>
 
     <LinearLayout
@@ -63,7 +64,7 @@
             android:orientation="horizontal">
 
             <ProgressBar
-                android:id="@+id/happy_progress"
+                android:id="@+id/happy_progress_minigame"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="36dp"
                 android:layout_height="173dp"
@@ -75,7 +76,7 @@
                 android:progressTint="@color/colorHappy" />
 
             <ProgressBar
-                android:id="@+id/eat_progress"
+                android:id="@+id/eat_progress_minigame"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="36dp"
                 android:layout_height="173dp"
@@ -87,7 +88,7 @@
                 android:progressTint="@color/colorEat" />
 
             <ProgressBar
-                android:id="@+id/health_progress"
+                android:id="@+id/health_progress_minigame"
                 style="@style/Widget.AppCompat.ProgressBar.Horizontal"
                 android:layout_width="36dp"
                 android:layout_height="173dp"
@@ -101,43 +102,68 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/button_next"
+            style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="110dp"
             android:layout_height="80dp"
             android:onClick="next"
-            android:text="Понял!"/>
+            android:text="Понял!"
+            android:textColor="#FFEB3B"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
-            android:orientation="horizontal">
+            android:gravity="bottom|center"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/happy_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="happy" />
-
-            <Button
-                android:id="@+id/eat_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="eat" />
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="379dp"
+                android:gravity="bottom|center"
+                android:text="Играй в мини игры\nдля получения опыта"
+                android:textColor="#FFE600"
+                android:textSize="24sp"
+                android:textStyle="bold|italic" />
 
             <Button
                 android:id="@+id/health_button"
                 style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="health" />
+                android:text="mini game" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="85dp"
+            android:gravity="bottom|center"
+            android:text="Повышай уровень"
+            android:textColor="#FFE600"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="301dp"
+            android:layout_height="123dp"
+            android:gravity="center|right"
+            android:text="Следи за\nпоказателями"
+            android:textColor="#FFE600"
+            android:textSize="24sp"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 </FrameLayout>

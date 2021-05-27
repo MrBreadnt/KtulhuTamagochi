@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".GameActivity">
 
     <FrameLayout
         android:id="@+id/game_layout"
@@ -46,7 +46,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:padding="5dp"
-                android:text="Level 0"
+                android:text="Level 1"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="#000000"
@@ -61,14 +61,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="setPaused"
-                android:text="отладочная пауза" />
 
             <ProgressBar
                 android:id="@+id/happy_progress"
@@ -111,26 +103,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="bottom"
+            android:gravity="bottom|center"
             android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/happy_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="setHappyProgress"
-                android:text="happy" />
-
-            <Button
-                android:id="@+id/eat_button"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:onClick="setEatProgress"
-                android:text="eat" />
 
             <Button
                 android:id="@+id/health_button"
@@ -138,10 +112,54 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:onClick="setHealthProgress"
-                android:text="health" />
+                android:text="mini game"
+                android:onClick="setHealthProgress"/>
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/minigame_ui_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ProgressBar
+            android:id="@+id/happy_progress_minigame"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="173dp"
+            android:layout_height="36dp"
+            android:max="100"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/horizontal_progress_bar_minigame"
+            android:progressTint="@color/colorHappy" />
+
+        <ProgressBar
+            android:id="@+id/eat_progress_minigame"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="173dp"
+            android:layout_height="36dp"
+            android:max="100"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:progress="25"
+            android:progressDrawable="@drawable/horizontal_progress_bar_minigame"
+            android:progressTint="@color/colorEat" />
+
+        <ProgressBar
+            android:id="@+id/health_progress_minigame"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            android:layout_width="173dp"
+            android:layout_height="36dp"
+            android:max="100"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:progress="75"
+            android:progressDrawable="@drawable/horizontal_progress_bar_minigame"
+            android:progressTint="@color/colorHealth" />
 
     </LinearLayout>
 </FrameLayout>

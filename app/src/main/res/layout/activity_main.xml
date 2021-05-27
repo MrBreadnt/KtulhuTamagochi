@@ -22,7 +22,7 @@
             android:id="@+id/imageView4"
             android:layout_width="match_parent"
             android:layout_height="279dp"
-            app:srcCompat="@drawable/alert_0" />
+            app:srcCompat="@drawable/logo" />
 
         <FrameLayout
             android:layout_width="match_parent"

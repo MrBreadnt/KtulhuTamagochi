@@ -54,15 +54,13 @@ public class MainActivity extends AppCompatActivity {
             }
             ed.apply();
             Intent intent = new Intent(MainActivity.this, LearnActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
             overridePendingTransition(0, 0);
         } else {
             for (int i = 0; i < 5; i++) {
-                Player p = new Player();
-                p.score = preferences.getInt("score" + i, 0);
-                p.name = preferences.getString("name" + i, "---");
+                Player p = new Player(preferences.getInt("score" + i, 0), preferences.getString("name" + i, "---"));
                 bestPlayers.add(p);
             }
             Collections.sort(bestPlayers, Player.COMPARE_BY_SCORE);
@@ -89,8 +87,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         Intent intent = new Intent(MainActivity.this, GameActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(0, 0);
     }
@@ -100,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         frame.addView(recordsLayout);
     }
 
-    public void backToMenu(View v){
+    public void backToMenu(View v) {
         frame.removeAllViews();
         frame.addView(menuLayout);
     }
@@ -229,7 +227,9 @@ public class MainActivity extends AppCompatActivity {
         public int score;
         public String name;
 
-        Player() {
+        Player(int score, String name) {
+            this.score = score;
+            this.name = name;
         }
 
         @Override

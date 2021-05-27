@@ -118,8 +118,8 @@ public class LearnActivity extends AppCompatActivity {
     }
     public void next(View v){
         Intent intent = new Intent(LearnActivity.this, MainActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
         overridePendingTransition(0, 0);
     }
@@ -141,7 +141,7 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     public void startMinigame() {
-        draw.setPause(true);
+        //draw.setPause(true);
         draw.setVisibility(View.INVISIBLE);
         uiLayout.setVisibility(View.INVISIBLE);
         minigame = new MinigameView(getApplicationContext(), new Runnable() {
@@ -176,7 +176,7 @@ public class LearnActivity extends AppCompatActivity {
     }
 
     public void closeMinigame() {
-        draw.setPause(false);
+        //draw.setPause(false);
         draw.setVisibility(View.VISIBLE);
         uiLayout.setVisibility(View.VISIBLE);
         gameLayout.removeAllViews();

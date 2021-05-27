@@ -10,10 +10,10 @@ import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Shader;
-import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.ProgressBar;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -27,6 +27,10 @@ public class MinigameView extends SurfaceView implements SurfaceHolder.Callback 
     Bitmap[] shark;
     Bitmap[] food;
     Bitmap[] monster;
+
+    ProgressBar eatProgressMinigame;
+    ProgressBar healthProgressMinigame;
+    ProgressBar happyProgressMinigame;
 
     public int foodInt = 0, healthInt = 0, happyInt = 0;
     Player player;
@@ -89,6 +93,9 @@ public class MinigameView extends SurfaceView implements SurfaceHolder.Callback 
                     monster[i] = Bitmap.createScaledBitmap(monster[i], (int) (monster[i].getWidth() * 0.75), (int) (monster[i].getHeight() * 0.75), false);
                 }
         }
+        eatProgressMinigame = findViewById(R.id.eat_progress_minigame);
+        healthProgressMinigame = findViewById(R.id.health_progress_minigame);
+        happyProgressMinigame = findViewById(R.id.happy_progress_minigame);
         paint.setStyle(Paint.Style.STROKE);
     }
 
@@ -271,9 +278,9 @@ public class MinigameView extends SurfaceView implements SurfaceHolder.Callback 
                                 if (fishArray.get(i).isAggressive) {
                                     healthInt -= 3;
                                 } else {
-                                    foodInt += 7;
+                                    foodInt += 2;
                                 }
-                                happyInt += 3;
+                                happyInt += 1;
                                 fishArray.remove(i);
                                 continue;
                             }

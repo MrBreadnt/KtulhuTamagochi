@@ -135,7 +135,7 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
 
                         //отрисовка ктулху
                         // костыльно потом поменять
-                        switch (state){
+                        switch (state) {
                             case 2:
                                 monsterAnim.setFrames(normal.length - 1);
                                 canvas.drawBitmap(normal[monsterAnim.getFrame(time)], (float) (getWidth() / 2 - normal[0].getWidth() / 2), (float) (getHeight() / 2 - normal[0].getHeight() / 2), paint);
@@ -179,10 +179,47 @@ public class DrawView extends SurfaceView implements SurfaceHolder.Callback {
     public boolean isPause() {
         return pause;
     }
-    public void setPause(boolean pause){
+
+    public void setPause(boolean pause) {
         this.pause = pause;
     }
-    public void setState(int state){
+
+    public void setState(int state) {
         this.state = state;
+    }
+
+    public void setLevel(int level) {
+        if (level > 2)
+            level = 2;
+        switch (level) {
+            case 2:
+                monster = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.monster_1_0),
+                        BitmapFactory.decodeResource(res, R.drawable.monster_1_1)
+                };
+                normal = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.normal_1_0),
+                        BitmapFactory.decodeResource(res, R.drawable.normal_1_1)
+                };
+                alert = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.alert_1_0),
+                        BitmapFactory.decodeResource(res, R.drawable.alert_1_1)
+                };
+                break;
+            case 1:
+            default:
+                monster = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.monster_0),
+                        BitmapFactory.decodeResource(res, R.drawable.monster_1)
+                };
+                normal = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.normal_0),
+                        BitmapFactory.decodeResource(res, R.drawable.normal_1)
+                };
+                alert = new Bitmap[]{
+                        BitmapFactory.decodeResource(res, R.drawable.alert_0),
+                        BitmapFactory.decodeResource(res, R.drawable.alert_1)
+                };
+        }
     }
 }

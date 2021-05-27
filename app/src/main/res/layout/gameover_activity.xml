@@ -15,7 +15,7 @@
         android:backgroundTint="#297353" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/score_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -24,20 +24,22 @@
         android:textSize="30sp" />
 
     <EditText
-        android:id="@+id/textView"
-        android:layout_width="136dp"
+        android:id="@+id/name"
+        android:layout_width="168dp"
         android:layout_height="wrap_content"
         android:background="@android:drawable/editbox_background"
+        android:inputType="textAutoCorrect|textCapSentences"
+        android:text="Имя"
+        android:maxLength="10"
         android:textAlignment="center"
         android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:text="Name"
-        android:inputType="textAutoCorrect|textCapSentences"/>
+        android:textSize="24sp" />
 
     <Button
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@android:drawable/ic_media_ff" />
+        android:background="@android:drawable/ic_media_ff"
+        android:onClick="saveScore"/>
 
 </LinearLayout>
