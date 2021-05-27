@@ -413,8 +413,10 @@ public class MinigameView extends SurfaceView implements SurfaceHolder.Callback 
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if (event.getX() > getWidth() * 0.5) player.x += player.speed * 0.5;
-        else player.x -= player.speed * 0.5;
+        if (player.x < getWidth() && player.x + monster[0].getWidth() > 0) {
+            if (event.getX() > getWidth() * 0.5) player.x += player.speed * 0.5;
+            else player.x -= player.speed * 0.5;
+        }
         return true;
     }
 }
